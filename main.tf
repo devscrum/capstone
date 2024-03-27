@@ -50,3 +50,19 @@ output "autoscaling_group_name" {
   value = aws_autoscaling_group.scrum1.name
 }
 
+#s3 Bucket
+
+
+module "s3_bucket" {
+  source = "terraform-aws-modules/s3-bucket/aws"
+
+  bucket = "devscrum1-bucket"
+  acl    = "private"
+
+  control_object_ownership = true
+  object_ownership         = "ObjectWriter"
+
+  versioning = {
+    enabled = true
+  }
+}
